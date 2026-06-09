@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "668196071831",
+    "project_id": "sirkelbus",
+    "storage_bucket": "sirkelbus.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668196071831:android:bf6e887efdacfc5cb37cd2",
+        "android_client_info": {
+          "package_name": "com.sirkelbus.sirkelbus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668196071831-qergj867g1vs26i95p2hn79qrhj2hnvr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD34bxDTy3JSJ2bcn-dpzLtfdL1K9yMh7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668196071831-qergj867g1vs26i95p2hn79qrhj2hnvr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
