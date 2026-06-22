@@ -1,0 +1,2 @@
+Adjsut the driver app with following guidelines:
+1. revamp the trip detail page for driver, dont directly live update the user's location as the latest bus location. This page should display map of the route (not user), then add direction from point to point like google maps's direction. Then half of the page height is displaying info about stop and button for arrival confirmation. Make it like trip simulator in admin page, but add additional button for driver to enable live update. If enabled then make user stream it location into trip, and display the bus position in map.

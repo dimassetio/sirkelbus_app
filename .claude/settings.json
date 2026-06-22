@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/Work/Bus App - Ariq/SirkelBus/**)",
+      "Read(//d/Work/Bus App - Ariq/**)",
+      "Bash(flutter run *)",
+      "Bash(cd \"d:\\\\Work\\\\Bus App - Ariq\\\\SirkelBus\\\\mobile\" && adb -s emulator-5554 exec-out screencap -p > \"C:\\\\Users\\\\MSIGF~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\sirkelbus_screen1.png\")",
+      "Bash(dart format *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\MSIGF~1\\AppData\\Local\\Temp\\claude"
+    ]
+  }
+}

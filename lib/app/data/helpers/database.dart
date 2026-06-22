@@ -19,6 +19,17 @@ class Database {
     }
   }
 
+  Future<bool> set(String id, Map<String, dynamic> json) async {
+    try {
+      json['createdAt'] = DateTime.now();
+      await collectionReference.doc(id).set(json);
+      return true;
+    } on FirebaseException catch (e) {
+      Get.snackbar(e.code, e.message ?? '');
+      return false;
+    }
+  }
+
   Future<DocumentSnapshot> getID(String id) {
     return collectionReference.doc(id).get();
   }

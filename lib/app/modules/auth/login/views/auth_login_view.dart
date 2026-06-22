@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../routes/app_pages.dart';
 import '../../../../utils/app_colors.dart';
 import '../controllers/auth_login_controller.dart';
 
@@ -121,6 +122,14 @@ class AuthLoginView extends GetView<AuthLoginController> {
                         child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
                       )
                     : const Text('Masuk'),
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextButton(
+              onPressed: () => Get.toNamed(Routes.AUTH_REGISTER),
+              child: Text(
+                'Belum punya akun? Daftar',
+                style: GoogleFonts.inter(fontSize: 13, color: AppColors.skyBlue),
               ),
             ),
           ],

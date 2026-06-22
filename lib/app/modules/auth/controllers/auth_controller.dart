@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 import '../../../data/models/user_model.dart';
+import '../../../data/services/notification_service.dart';
 import '../../../routes/app_pages.dart';
 
 AuthController get authC => Get.find<AuthController>();
@@ -52,10 +53,18 @@ class AuthController extends GetxController {
       return;
     }
     user = activeUser;
+    if (activeUser.id != null) {
+      NotificationService.instance.saveToken(activeUser.id!);
+    }
+    final current = Get.currentRoute;
     if (activeUser.isDriver) {
-      Get.offAllNamed(Routes.DRIVER_HOME);
+      if (!current.startsWith(Routes.DRIVER_HOME)) {
+        Get.offAllNamed(Routes.DRIVER_HOME);
+      }
     } else {
-      Get.offAllNamed(Routes.USER_HOME);
+      if (!current.startsWith(Routes.USER_HOME)) {
+        Get.offAllNamed(Routes.USER_HOME);
+      }
     }
   }
 
@@ -71,6 +80,44 @@ class AuthController extends GetxController {
         return 'Data user tidak ditemukan';
       }
       user = activeUser;
+      if (credential.user?.uid != null) {
+        NotificationService.instance.saveToken(credential.user!.uid);
+      }
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<String?> signUp({
+    required String name,
+    required String email,
+    required String phone,
+    required String password,
+  }) async {
+    try {
+      final credential = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      final uid = credential.user?.uid;
+      if (uid == null) return 'Gagal membuat akun';
+      final newUser = UserModel(
+        name: name,
+        email: email,
+        phone: phone,
+        role: Role.user,
+        isActive: true,
+      );
+      final saved = await newUser.set(uid, newUser.toJson());
+      if (!saved) {
+        await credential.user?.delete();
+        return 'Gagal menyimpan data user';
+      }
+      user = (await UserModel(id: uid).getUser()) ?? UserModel();
+      NotificationService.instance.saveToken(uid);
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
